@@ -16,10 +16,58 @@ function onLoad() {
 	swapInnerHTML();
 	dateAlter();
 	getNbDays();
-	updateClock1;
-	updateClock2();
-	//updateClock3();
-	updateGraphicClock;
+	//updateClock1;
+	// updateClock2();
+	// //updateClock3();
+	// updateGraphicClock;
+	// updateGraphicClock1;
+	// console.log("Le bouton de recherche a été cliqué!");
+	// let btnSearch = document.getElementById("btnsearch");
+	// btnSearch.addEventListener('click', search);
+	const btRecherche = document.getElementById("btnsearch");
+    btRecherche.addEventListener("click", onBtRechercheClick);
+
+    function onBtRechercheClick() {
+        const searchInput = document.getElementById("inputSearch");
+
+        // Ajouter un écouteur d'événement pour le clic sur le bouton de recherche
+        const searchText = searchInput.value.trim();
+        console.log(searchText);
+        // Si le texte est vide, ne rien faire
+        if (searchText.length === 0) {
+            return;
+        }
+
+        // Vérifier si le contenu original de la page a déjà été sauvegardé
+        if (originalContent === null) {
+            // Si ce n'est pas le cas, sauvegarder le contenu du corps de la page
+            originalContent = document.body.innerHTML;
+        }
+
+        // Créer un nouvel élément div pour contenir le contenu original de la page
+        const originalContentDiv = document.createElement('div');
+        originalContentDiv.innerHTML = originalContent;
+
+        // Chercher le texte souhaité dans toute la page à l'aide d'une expression régulière
+        const regex = new RegExp(searchText, 'gi');
+        const matches = originalContentDiv.innerHTML.match(regex);
+
+        // Si des correspondances sont trouvées...
+        if (matches !== null) {
+            for (let i = 0; i < matches.length; i++) {
+                const match = matches[i];
+                // Remplacer chaque occurrence du texte par une balise <span> avec la classe CSS "select"
+                originalContentDiv.innerHTML = originalContentDiv.innerHTML.replace(
+                    new RegExp(match, 'g'),
+                    '<span class="surligner">' + match + '</span>'
+                );
+            }
+        }
+
+        // Remplacer le contenu du corps de la page par le contenu de la nouvelle div
+        document.body.innerHTML = originalContentDiv.innerHTML;
+        console.log("Le bouton de recherche a été cliqué!");
+	}
 }
 
 const defineHeading1 = () => {
@@ -145,6 +193,43 @@ const getNbDays = () => {
 // 	hour.innerHTML += '<img src="assets/images/' + sec[0] + '.gif"> <img src="assets/images/' + sec[1] + '.gif">';
 // }, 1000);
 
+
+
+// const updateGraphicClock1 = setInterval(function () {
+// 	let date = new Date();
+// 	let hour = document.getElementById("heure");
+// 	hour.innerHTML = "<p> Il est " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "</p>";
+// 	let heure = date.getHours().toString()
+// 	let minute = date.getMinutes().toString()
+// 	let sec = date.getSeconds().toString()
+
+// 	if (heure[1] === undefined) {
+// 	  heure = "0" + heure[0];
+// 	}
+// 	if (minute[1] === undefined) {
+// 	  minute = "0" + minute[0];
+// 	}
+// 	if (sec[1] === undefined) {
+// 	  sec = "0" + sec[0];
+// 	}
+
+// 	if (heure[1] === "0") {
+// 	  heure = "0" + heure[0];
+// 	}
+// 	if (minute[1] === "0") {
+// 	  minute = "0" + minute[0];
+// 	}
+// 	if (sec[1] === "0") {
+// 	  sec = "0" + sec[0];
+// 	}
+
+// 	hour.innerHTML = '<img src="assets/images/' + heure[0] + '.gif"> <img src="assets/images/' + heure[1] + '.gif">';
+// 	hour.innerHTML += '<img src="assets/images/' + minute[0] + '.gif"> <img src="assets/images/' + minute[1] + '.gif">';
+// 	hour.innerHTML += '<img src="assets/images/' + sec[0] + '.gif"> <img src="assets/images/' + sec[1] + '.gif">';
+//   }, 1000);
+
+
+
 // const updateClock3 = () => {
 // 	const heure = new Date();
 // 	const hours = heure.getHours();
@@ -203,22 +288,139 @@ monInput.addEventListener("input", function () {
 const plusIcons = document.querySelectorAll('.plus');
 
 plusIcons.forEach(icon => {
-  icon.addEventListener('click', () => {
-    const deroulant = icon.closest('.deroulant');
-    const ouvrir = deroulant.querySelector('.ouvrir');
-    if (ouvrir) {
-      if (ouvrir.classList.contains('visible')) {
-        ouvrir.style.display = 'none';
-        ouvrir.classList.remove('visible');
-        icon.src = icon.src.includes('plus.gif') ? 'assets/images/minus.gif' : 'assets/images/plus.gif';
-      } else {
-        ouvrir.style.display = 'block';
-        ouvrir.classList.add('visible');
-        icon.src = icon.src.includes('minus.gif') ? 'assets/images/plus.gif' : 'assets/images/minus.gif';
-      }
-    } else {
-      console.log('Le li "deroulant" ne contient pas ul class="ouvrir menu-ouvrir"');
-    }
-  });
+	icon.addEventListener('click', () => {
+		const deroulant = icon.closest('.deroulant');
+		const ouvrir = deroulant.querySelector('.ouvrir');
+		if (ouvrir) {
+			if (ouvrir.classList.contains('visible')) {
+				ouvrir.style.display = 'none';
+				ouvrir.classList.remove('visible');
+				icon.src = icon.src.includes('plus.gif') ? 'assets/images/minus.gif' : 'assets/images/plus.gif';
+			} else {
+				ouvrir.style.display = 'block';
+				ouvrir.classList.add('visible');
+				icon.src = icon.src.includes('minus.gif') ? 'assets/images/plus.gif' : 'assets/images/minus.gif';
+			}
+		} else {
+			console.log('Le li "deroulant" ne contient pas ul class="ouvrir menu-ouvrir"');
+		}
+	});
 });
 
+
+// const search = () => {
+// 	let buttonClicked = false;
+// 	const btnSearch = document.getElementById("btnsearch");
+// 	btnSearch.addEventListener("click", () => {
+// 		const textInput = document.getElementById("inputSearch").value.trim();
+// 		if (textInput.textContent != "") {
+// 			if (!buttonClicked) {
+// 				const bodyHTML = document.body.textContent;
+// 				for (let i = 0; i < bodyHTML.length; i++) {
+// 					if (bodyHTML[i] === textInput) {
+// 						const span = document.createElement("span");
+// 						span.textContent = textInput;
+// 						span.classList.add("surligner");
+// 						bodyHTML[i].parentNode.insertBefore(span, bodyHTML[i]);
+// 						bodyHTML[i].remove();
+// 					}
+// 				}
+// 				buttonClicked = true;
+// 			}
+// 			else {
+// 				document.body.innerHTML = bodyHTML;
+// 			  }
+// 		}
+
+// 	});
+// };
+
+// document.addEventListener("DOMContentLoaded", search);
+
+
+
+
+let originalContent = null;
+
+// let btRecherche = document.getElementById("btnsearch")
+// function onBtRechercheClick() {
+// 	const searchInput = document.getElementById("inputSearch");
+
+// 	// Ajouter un écouteur d'événement pour le clic sur le bouton de recherche
+// 	const searchText = searchInput.value.trim();
+// 	console.log(searchText);
+// 	// Si le texte est vide, ne rien faire
+// 	if (searchText.length === 0) {
+// 		return;
+// 	}
+
+// 	// Vérifier si le contenu original de la page a déjà été sauvegardé
+// 	if (originalContent === null) {
+// 		// Si ce n'est pas le cas, sauvegarder le contenu du corps de la page
+// 		originalContent = document.body.innerHTML;
+// 	} else {
+// 		// Sinon, restaurer le contenu original en remplaçant le corps de la page par la valeur de originalContent
+// 		document.body.innerHTML = originalContent;
+// 	}
+
+// 	// Chercher le texte souhaité dans toute la page à l'aide d'une expression régulière
+// 	const regex = new RegExp(searchText, 'gi');
+// 	const matches = document.body.innerHTML.match(regex);
+
+// 	// Si des correspondances sont trouvées...
+// 	if (matches !== null) {
+// 		for (let i = 0; i < matches.length; i++) {
+// 			const match = matches[i];
+// 			// Remplacer chaque occurrence du texte par une balise <span> avec la classe CSS "select"
+// 			document.body.innerHTML = document.body.innerHTML.replace(
+// 				new RegExp(match, 'g'),
+// 				'<span class="surligner">' + match + '</span>'
+// 			);
+// 		}
+// 	}
+// 	console.log("Le bouton de recherche a été cliqué!");
+// }
+
+
+
+
+
+// let originalContent = null;
+// function search() {
+// 	// Récupérer le champ de recherche
+// 	const searchInput = document.getElementById("inputSearch");
+
+// 	// Ajouter un écouteur d'événement pour le clic sur le bouton de recherche
+// 	const searchText = searchInput.value.trim();
+// 	console.log(searchText);
+// 	// Si le texte est vide, ne rien faire
+// 	if (searchText.length === 0) {
+// 		return;
+// 	}
+
+// 	// Vérifier si le contenu original de la page a déjà été sauvegardé
+// 	if (originalContent === null) {
+// 		// Si ce n'est pas le cas, sauvegarder le contenu du corps de la page
+// 		originalContent = document.body.innerHTML;
+// 	} else {
+// 		// Sinon, restaurer le contenu original en remplaçant le corps de la page par la valeur de originalContent
+// 		document.body.innerHTML = originalContent;
+// 	}
+
+// 	// Chercher le texte souhaité dans toute la page à l'aide d'une expression régulière
+// 	const regex = new RegExp(searchText, 'gi');
+// 	const matches = document.body.innerHTML.match(regex);
+
+// 	// Si des correspondances sont trouvées...
+// 	if (matches !== null) {
+// 		for (let i = 0; i < matches.length; i++) {
+// 			const match = matches[i];
+// 			// Remplacer chaque occurrence du texte par une balise <span> avec la classe CSS "select"
+// 			document.body.innerHTML = document.body.innerHTML.replace(
+// 				new RegExp(match, 'g'),
+// 				'<span class="surligner">' + match + '</span>'
+// 			);
+// 		}
+// 	}
+// 	console.log("La fonction search() a été appelée!");
+// }
