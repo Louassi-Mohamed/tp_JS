@@ -1,0 +1,52 @@
+6.1
+Quel sera l’évènement qui déclenchera l’appelle de votre fonction?
+   le chargement de la page 
+
+Quelle méthode avez-vous utilisée pour récupérer l’objet représentant votre balise <h1> ?
+   la méthode que j'ai utilisé pour récupérer l'objet est document.getElementById("title") dans la fonction defineHeading1()
+
+Quelle propriété de l’objet représentant votre balise <h1> avez-vous utilisée pour récupérer
+le texte de celui-ci ?
+   La propriété de l'objet de ma balise que j'ai utilisé pour récupérer le texte de celui-ci est titleElement.textContent
+ 
+Quelle(s) méthode(s) avez-vous utilisée pour récupérer l’objet représentant la première
+balise <h2> ?
+   La méthode utilisée pour récupérer l’objet représentant la première balise document.getElementsByTagName("h2") pour récupérer les h2 et pour récupérer le première éléments h2[0].textContent.
+   Pour prendre la dernière balise h2[h2.length-1].textContent
+
+Comment faire pour connaitre le nombre de balise <h2> du document ?
+   J'ai fais une fonction avec length qui me permet d'afficher le taille
+
+Quelle méthode avez-vous utilisée pour récupérer les objets de votre classe ?
+   J'ai utilisé document.getElementsByClassName("firstOrLast")
+
+Comment avez-vous déterminé si un nombre est pair ?
+   J'ai utilisé %2 sur la taille du getElementsByClassName à travers une variable
+
+Quelles différences existe-t-il entre les 3 propriétés innerHTML, innerText et textContent ?
+   innerHTML : permet de définir ou de récupérer le contenu HTML d'un élément, y compris les balises HTML.
+   innerText : permet de définir ou de récupérer le contenu textuel visible d'un élément, en prenant en compte le rendu visuel et en ignorant les balises HTML.
+   textContent : permet de définir ou de récupérer le contenu textuel brut d'un élément, en ignorant le rendu visuel et en ignorant les balises HTML.   
+
+Comment modifier votre code pour qu’il permette de sélectionner le 1er auteur de la liste ?
+   pour qu'il sélectionne le première auteur de la liste il me suffit de rajouter un break; dans le ifz
+
+Comment obtenez-vous le nombre de jours ?
+   Je fais la différence entre le 19 juillet 2023 et la date actuelle
+   
+Comment faites-vous la mise à jour du texte ?
+	if (diff === 1) {
+		getDay.innerHTML = "<p>Il reste" + diff + " jour avant le " + date1 + "</p>";
+	} else {
+		getDay.innerHTML = "<p>Il reste" + diff + " jours avant le " + date1 + "</p>";
+		console.log(diff)
+	}
+
+Laquelle des deux méthodes de l’objet window avez-vous utilisé ? Pourquoi ?
+   J'ai utilisé setInterval() car setTimeout() execute le code une fois et seulement une fois après l'interval de temps définis
+
+Quel évènement avez-vous utilisé ?
+   addEventListner mais on aurait pu faire un setInterval
+
+Comment avez-vous fait changer la couleur du champ texte ?
+   un if qui change selon le contenu

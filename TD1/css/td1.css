@@ -1,0 +1,60 @@
+@charset "utf-8";
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+.white {
+    background-color: rgb(255, 255, 255);
+}
+
+.green {
+    background-color: rgb(150, 255, 150);
+}
+
+.red {
+    background-color: rgb(255, 150, 150);
+}
+
+.deroulant {
+    border-radius: 5px;
+    border: 2px solid blue;
+    color: white;
+    background-color: black;
+    margin: 5px;
+    padding: 0px;
+}
+
+.deroulant > a:first-child {
+    background-color: blue;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    padding: 0;
+}
+
+
+.deroulant a {
+    color: white;
+}
+
+.ouvrir {
+    display: none;
+}
+
+.visible {
+    display: block;
+  }
+
+nav {
+    display: inline-block;
+}
