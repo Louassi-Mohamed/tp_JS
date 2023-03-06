@@ -6,8 +6,6 @@ let message = 'JavaScript is ok :)';
 // console.log(message);
 
 function onLoad() {
-	// console.log('In onLoad() function…');
-	// Your JavaScript code goes here !
 	defineHeading1();
 	defineHeading2();
 	defineHeading3();
@@ -16,14 +14,9 @@ function onLoad() {
 	swapInnerHTML();
 	dateAlter();
 	getNbDays();
-	//updateClock1;
-	// updateClock2();
-	// //updateClock3();
-	// updateGraphicClock;
-	// updateGraphicClock1;
-	// console.log("Le bouton de recherche a été cliqué!");
-	// let btnSearch = document.getElementById("btnsearch");
-	// btnSearch.addEventListener('click', search);
+	updateClock1;
+	updateClock2();
+	updateGraphicClock1;
 	const btRecherche = document.getElementById("btnsearch");
     btRecherche.addEventListener("click", onBtRechercheClick);
 
@@ -163,113 +156,56 @@ const getNbDays = () => {
 	}
 }
 
-// const updateClock1 = setInterval(function () {
-// 	let heure = new Date();
-// 	let hour = document.getElementById("heure");
-// 	hour.innerHTML = "<p> Il est " + heure.getHours() + ":" + heure.getMinutes() + ":" + heure.getSeconds() + "</p>";
-// }, 1000);
+const updateClock1 = setInterval(function () {
+	let heure = new Date();
+	let hour = document.getElementById("heure");
+	hour.innerHTML = "<p> Il est " + heure.getHours() + ":" + heure.getMinutes() + ":" + heure.getSeconds() + "</p>";
+}, 1000);
 
 
 
-// const updateClock2 = () => {
-// 	let heure = new Date();
-// 	let hour = document.getElementById("heure1");
-// 	hour.innerHTML = "<p> Il est " + heure.getHours() + ":" + heure.getMinutes() + ":" + heure.getSeconds() + "</p>";
-// 	// console.log("heure:" + heure.getHours() + ":" + heure.getMinutes() + ":" + heure.getSeconds())
-// 	setTimeout(function () {
-// 		updateClock2()
-// 	}, 1000);
-// }
+const updateClock2 = () => {
+	let heure = new Date();
+	let hour = document.getElementById("heure1");
+	hour.innerHTML = "<p> Il est " + heure.getHours() + ":" + heure.getMinutes() + ":" + heure.getSeconds() + "</p>";
+	// console.log("heure:" + heure.getHours() + ":" + heure.getMinutes() + ":" + heure.getSeconds())
+	setTimeout(function () {
+		updateClock2()
+	}, 1000);
+}
 
-// const updateGraphicClock = setInterval(function () {
-// 	let date = new Date();
-// 	let hour = document.getElementById("heure");
-// 	hour.innerHTML = "<p> Il est " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "</p>";
-// 	let heure = date.getHours().toString()
-// 	let minute = date.getMinutes().toString()
-// 	let sec = date.getSeconds().toString()
-// 	hour.innerHTML = '<img src="assets/images/' + heure[0] + '.gif"> <img src="assets/images/' + heure[1] + '.gif">';
-// 	hour.innerHTML += '<img src="assets/images/' + minute[0] + '.gif"> <img src="assets/images/' + minute[1] + '.gif">';
-// 	hour.innerHTML += '<img src="assets/images/' + sec[0] + '.gif"> <img src="assets/images/' + sec[1] + '.gif">';
-// }, 1000);
+const updateGraphicClock1 = setInterval(function () {
+	let date = new Date();
+	let hour = document.getElementById("heure");
+	hour.innerHTML = "<p> Il est " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "</p>";
+	let heure = date.getHours().toString()
+	let minute = date.getMinutes().toString()
+	let sec = date.getSeconds().toString()
 
+	if (heure[1] === undefined) {
+	  heure = "0" + heure[0];
+	}
+	if (minute[1] === undefined) {
+	  minute = "0" + minute[0];
+	}
+	if (sec[1] === undefined) {
+	  sec = "0" + sec[0];
+	}
 
+	if (heure[1] === "0") {
+	  heure = "0" + heure[0];
+	}
+	if (minute[1] === "0") {
+	  minute = "0" + minute[0];
+	}
+	if (sec[1] === "0") {
+	  sec = "0" + sec[0];
+	}
 
-// const updateGraphicClock1 = setInterval(function () {
-// 	let date = new Date();
-// 	let hour = document.getElementById("heure");
-// 	hour.innerHTML = "<p> Il est " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "</p>";
-// 	let heure = date.getHours().toString()
-// 	let minute = date.getMinutes().toString()
-// 	let sec = date.getSeconds().toString()
-
-// 	if (heure[1] === undefined) {
-// 	  heure = "0" + heure[0];
-// 	}
-// 	if (minute[1] === undefined) {
-// 	  minute = "0" + minute[0];
-// 	}
-// 	if (sec[1] === undefined) {
-// 	  sec = "0" + sec[0];
-// 	}
-
-// 	if (heure[1] === "0") {
-// 	  heure = "0" + heure[0];
-// 	}
-// 	if (minute[1] === "0") {
-// 	  minute = "0" + minute[0];
-// 	}
-// 	if (sec[1] === "0") {
-// 	  sec = "0" + sec[0];
-// 	}
-
-// 	hour.innerHTML = '<img src="assets/images/' + heure[0] + '.gif"> <img src="assets/images/' + heure[1] + '.gif">';
-// 	hour.innerHTML += '<img src="assets/images/' + minute[0] + '.gif"> <img src="assets/images/' + minute[1] + '.gif">';
-// 	hour.innerHTML += '<img src="assets/images/' + sec[0] + '.gif"> <img src="assets/images/' + sec[1] + '.gif">';
-//   }, 1000);
-
-
-
-// const updateClock3 = () => {
-// 	const heure = new Date();
-// 	const hours = heure.getHours();
-// 	const minutes = heure.getMinutes();
-// 	const seconds = heure.getSeconds();
-
-// 	// Récupérer chaque chiffre de l'heure, des minutes et des secondes
-// 	const hour1 = Math.floor(hours / 10);
-// 	const hour2 = hours % 10;
-// 	const minute1 = Math.floor(minutes / 10);
-// 	const minute2 = minutes % 10;
-// 	const second1 = Math.floor(seconds / 10);
-// 	const second2 = seconds % 10;
-
-// 	// Définir le chemin d'accès pour chaque image
-// 	const images = {
-// 		0: 'assets/images/0.gif',
-// 		1: 'assets/images/1.gif',
-// 		2: 'assets/images/2.gif',
-// 		3: 'assets/images/3.gif',
-// 		4: 'assets/images/4.gif',
-// 		5: 'assets/images/5.gif',
-// 		6: 'assets/images/6.gif',
-// 		7: 'assets/images/7.gif',
-// 		8: 'assets/images/8.gif',
-// 		9: 'assets/images/9.gif'
-// 	};
-
-// 	// Afficher les images correspondantes pour chaque chiffre
-// 	document.getElementById('hour1').src = images[hour1];
-// 	document.getElementById('hour2').src = images[hour2];
-// 	document.getElementById('minute1').src = images[minute1];
-// 	document.getElementById('minute2').src = images[minute2];
-// 	document.getElementById('second1').src = images[second1];
-// 	document.getElementById('second2').src = images[second2];
-
-// 	// Actualiser l'heure toutes les secondes
-// 	setTimeout(updateClock3, 1000);
-// };
-
+	hour.innerHTML = '<img src="assets/images/' + heure[0] + '.gif"> <img src="assets/images/' + heure[1] + '.gif">';
+	hour.innerHTML += '<img src="assets/images/' + minute[0] + '.gif"> <img src="assets/images/' + minute[1] + '.gif">';
+	hour.innerHTML += '<img src="assets/images/' + sec[0] + '.gif"> <img src="assets/images/' + sec[1] + '.gif">';
+  }, 1000);
 
 let monInput = document.getElementById('monInput');
 monInput.addEventListener("input", function () {
@@ -307,120 +243,4 @@ plusIcons.forEach(icon => {
 	});
 });
 
-
-// const search = () => {
-// 	let buttonClicked = false;
-// 	const btnSearch = document.getElementById("btnsearch");
-// 	btnSearch.addEventListener("click", () => {
-// 		const textInput = document.getElementById("inputSearch").value.trim();
-// 		if (textInput.textContent != "") {
-// 			if (!buttonClicked) {
-// 				const bodyHTML = document.body.textContent;
-// 				for (let i = 0; i < bodyHTML.length; i++) {
-// 					if (bodyHTML[i] === textInput) {
-// 						const span = document.createElement("span");
-// 						span.textContent = textInput;
-// 						span.classList.add("surligner");
-// 						bodyHTML[i].parentNode.insertBefore(span, bodyHTML[i]);
-// 						bodyHTML[i].remove();
-// 					}
-// 				}
-// 				buttonClicked = true;
-// 			}
-// 			else {
-// 				document.body.innerHTML = bodyHTML;
-// 			  }
-// 		}
-
-// 	});
-// };
-
-// document.addEventListener("DOMContentLoaded", search);
-
-
-
-
 let originalContent = null;
-
-// let btRecherche = document.getElementById("btnsearch")
-// function onBtRechercheClick() {
-// 	const searchInput = document.getElementById("inputSearch");
-
-// 	// Ajouter un écouteur d'événement pour le clic sur le bouton de recherche
-// 	const searchText = searchInput.value.trim();
-// 	console.log(searchText);
-// 	// Si le texte est vide, ne rien faire
-// 	if (searchText.length === 0) {
-// 		return;
-// 	}
-
-// 	// Vérifier si le contenu original de la page a déjà été sauvegardé
-// 	if (originalContent === null) {
-// 		// Si ce n'est pas le cas, sauvegarder le contenu du corps de la page
-// 		originalContent = document.body.innerHTML;
-// 	} else {
-// 		// Sinon, restaurer le contenu original en remplaçant le corps de la page par la valeur de originalContent
-// 		document.body.innerHTML = originalContent;
-// 	}
-
-// 	// Chercher le texte souhaité dans toute la page à l'aide d'une expression régulière
-// 	const regex = new RegExp(searchText, 'gi');
-// 	const matches = document.body.innerHTML.match(regex);
-
-// 	// Si des correspondances sont trouvées...
-// 	if (matches !== null) {
-// 		for (let i = 0; i < matches.length; i++) {
-// 			const match = matches[i];
-// 			// Remplacer chaque occurrence du texte par une balise <span> avec la classe CSS "select"
-// 			document.body.innerHTML = document.body.innerHTML.replace(
-// 				new RegExp(match, 'g'),
-// 				'<span class="surligner">' + match + '</span>'
-// 			);
-// 		}
-// 	}
-// 	console.log("Le bouton de recherche a été cliqué!");
-// }
-
-
-
-
-
-// let originalContent = null;
-// function search() {
-// 	// Récupérer le champ de recherche
-// 	const searchInput = document.getElementById("inputSearch");
-
-// 	// Ajouter un écouteur d'événement pour le clic sur le bouton de recherche
-// 	const searchText = searchInput.value.trim();
-// 	console.log(searchText);
-// 	// Si le texte est vide, ne rien faire
-// 	if (searchText.length === 0) {
-// 		return;
-// 	}
-
-// 	// Vérifier si le contenu original de la page a déjà été sauvegardé
-// 	if (originalContent === null) {
-// 		// Si ce n'est pas le cas, sauvegarder le contenu du corps de la page
-// 		originalContent = document.body.innerHTML;
-// 	} else {
-// 		// Sinon, restaurer le contenu original en remplaçant le corps de la page par la valeur de originalContent
-// 		document.body.innerHTML = originalContent;
-// 	}
-
-// 	// Chercher le texte souhaité dans toute la page à l'aide d'une expression régulière
-// 	const regex = new RegExp(searchText, 'gi');
-// 	const matches = document.body.innerHTML.match(regex);
-
-// 	// Si des correspondances sont trouvées...
-// 	if (matches !== null) {
-// 		for (let i = 0; i < matches.length; i++) {
-// 			const match = matches[i];
-// 			// Remplacer chaque occurrence du texte par une balise <span> avec la classe CSS "select"
-// 			document.body.innerHTML = document.body.innerHTML.replace(
-// 				new RegExp(match, 'g'),
-// 				'<span class="surligner">' + match + '</span>'
-// 			);
-// 		}
-// 	}
-// 	console.log("La fonction search() a été appelée!");
-// }
